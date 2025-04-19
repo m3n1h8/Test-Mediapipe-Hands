@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+    
+<head>
+    <title> Bói tình yêu</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=h, initial-scale=1.0">
+    <title>Document</title>
+<link rel = "stylesheet"
+href = "hello.css">
+</head>
+<body> 
+    <h2 >GƯƠNG THẦN TÌNH YÊU </h2>
+    <div>hello gương thần</div>
+<br><br>
+nhập tên của bạn  : <input id = "ban" value><br><br>
+nhập tên người ấy :  <input id = "nguoi_ay" value ><br><br>
+<button onclick = "khen()">OK</button>
+  <br>  <div id = "b"></div><br> 
+  
+ <img src =" Screenshot 2025-04-15 152103.png " width = 49% >
+ <img src =" Screenshot 2025-04-15 152103.png " width = 49% >
+    <script>
+        
+        
+         var khen = function() {
+       var toi = document.getElementById("ban").value
+       var co = document.getElementById("nguoi_ay").value
+       var chuc_phuc = "Chúc 2 bạn hạnh phúc mãi mãi về sau. " + toi + " và " + co + " sẽ bên nhau đến đầu bạc "
+       document.getElementById("b").innerHTML = chuc_phuc
+
+var du_doan = function() {
+ var my_date = parseInt(window.prompt("số tuổi của bạn :"))
+       var her_date = parseInt(window.prompt("số tuổi của người ấy :"))
+    if ( my_date > her_date) {
+     document.write("<h1>dựa trên những bài nghiên cứu của chúng tôi về độ tuổi, tính cách, sở thích đặc trưng của 2 bạn . Chúng tôi nhận thấy rằng :<br> Hai bạn sinh ra là để giành cho nhau " + toi + " và " + co + " sẽ luôn suôn sẻ trong chuyện tình yêu</h1>"
+     
+      )
+
+    }
+    else { 
+     document.write("<h1>dựa trên những bài nghiên cứu của chúng tôi về độ tuổi, tính cách, sở thích đặc trưng của 2 bạn . Chúng tôi nhận thấy rằng :<br> mặc dù có đôi chút cãi vã trong tình yêu nhưng đó sẽ là thử thách cho tình yêu mặn nồng của 2 bạn sau này</h1>")
+    }
+    
+}
+setTimeout ( du_doan , 2000)}
+    
+
+
+
+
+
+      
+
+    
+    
+
+
+
+
+
+    
+    </script>
+</body>
+</html>
