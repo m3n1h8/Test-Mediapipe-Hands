@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>khảo sát việc làm</title>
+        <link rel="stylesheet" href="survey.css">
+
+    </head>
+    <body>
+       <div class="mom">
+            <h1>KHẢO SÁT VIỆC LÀM</h1>
+            <h2>biểu mẫu khảo sát việc làm</h2>
+            
+            <div class="form">
+                
+                 <p>Họ tên</p>
+                 <input placeholder="nhập tên của bạn" type="text" id ="name"><br><br>
+                 <p>Email</p>
+                 <input placeholder="nhập email của bạn" type="email" id ="email"><br><br>
+                 <P>Tuổi</P>
+                 <input placeholder="nhập tuổi " type="number" id ="age"><br><br>
+                 <p>Hiện tại bạn đang là</p>
+                 <input type="radio" id="student" name="status" value="student">
+                 <label for="student">Sinh viên</label><br>
+                 <input type="radio" id="employee" name="status" value="employee">
+                 <label for="employee">nhân viên</label>
+                 <p>Bạn sẽ giới thiệu chúng tôi với ai chứ ? </p>
+                 <input type="radio" value="friend" ><label for="friend">bạn</label><br>
+                 <input type="radio" value="family"><label for="family">gia đình</label><br>
+                 <input type="radio" value="colleague"><label for="colleague">đồng nghiệp</label><br>
+                 <p>Ngôn ngữ lập trihf và framework mà bạn đã biết</p>
+                 <input type="checkbox" value="html"><label for ="html">HTML</label> 
+                 <input type="checkbox" value="css"><label for ="css">CSS</label>
+                 <input type="checkbox" value="python"><label for ="python">PYTHON</label><BR>
+                 <p>Bạn có câu hỏi gì cho chúng tôi?</p>
+                 <input  placeholder="nhập câu hỏi của bạn" id="question"></input><br>
+                 <button>Submit</button>
+            </div>
+            
+            
+    
+        </div>
+        <script src="check.js"></script>
+    </body>
+</html>

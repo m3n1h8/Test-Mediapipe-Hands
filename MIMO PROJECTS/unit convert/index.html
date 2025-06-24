@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Unit Converter</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body{
+           background:linear-gradient(145deg,#FCCD71,#CC4FC5,#455AD1);
+            
+            
+            
+            justify-content: center;
+            align-items: center;
+        }
+        .container{
+            background:linear-gradient(45deg,#FCCD71,#CC4FC5,#455AD1);
+            padding : 5% 10% 10% 10%;
+            border-radius: 20px;
+            border: solid 1px;
+            margin-top: 10%;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            
+
+        }
+        p{
+            margin-top: 5%;
+            background-color:white;
+            padding: 4%;
+            border-radius: 10px;
+            border: solid 1px;
+        }
+        .container:hover(
+
+        )
+
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>unit Converter</h1>
+    <input type="number" placeholder="Enter number" id="inputValue">
+    <select id="unitSelect">
+        <option value="m">Meter to Kilometer </option>
+        <option value="km">Kilometer to Meter</option>
+        
+    </select>
+    <button onclick="convert()" >Convert</button>
+    <p id="result">Result: </p>
+    </div>
+    
+    <script>
+        function convert() {
+            const inputValue= document.getElementById('inputValue').value;
+            const unitSelect= document.getElementById('unitSelect').value;
+            const result= document.getElementById('result');
+            let outPut;
+            
+                 
+           
+            if (!inputValue) { 
+            result.innerHTML = "Please enter a number!"}
+            else if(unitSelect === "m"){
+                result.innerHTML= "Result: "+inputValue/1000 + 'km' }
+
+            else{ result.innerHTML="Result: "+ inputValue*1000 + 'm'}
+
+            
+
+
+        }
+
+    </script>
+</body>
+</html>

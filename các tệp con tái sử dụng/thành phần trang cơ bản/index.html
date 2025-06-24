@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Respontive Screen</title>
+    
+</head>
+<body>
+    <style>
+        .container {
+
+            
+            max-width: 960px;
+            margin: 0 auto; /* Căn giữa khung chứa */
+            
+        }
+        .header ,.footer{
+            background-color: brown;
+            color: yellow;
+            text-align: center;
+            
+            padding: 0px;
+            border: 1px solid brown;/* để margin = 0 hoạt động */
+            
+           
+            
+            
+        }
+        .body {
+            margin:0;
+            padding: 0;
+            display: flex; /* Sử dụng Flexbox để tạo bố cục linh hoạt */
+            
+        
+            flex-wrap: wrap;/* Cho phép các phần tử con tự động xuống dòng khi không đủ không gian */
+            
+
+        }
+        .content {
+            background-color:yellow;
+            color: black;
+            padding: 10px;
+            flex-basis: 100%; /* Chiếm 100% chiều rộng của khung chứa */
+            box-sizing: border-box; /* Đảm bảo padding không làm tăng chiều rộng tổng thể */
+            
+
+         
+        }
+        .slidebar {
+            background-color: rgb(158, 80, 12);
+            color: white;
+            padding: 10px;
+            flex-basis: 100%; /* Chiếm 100% chiều rộng của khung chứa */
+            box-sizing: border-box; /* Đảm bảo padding không làm tăng chiều rộng tổng thể */
+
+        }
+        @media (min-width: 570px) {
+            .content {
+                flex-basis: 70%;
+                /* Chiếm 70% chiều rộng của khung chứa */
+            }
+            .slidebar {
+                flex-basis: 30%;
+
+            
+            }
+        }
+
+    </style>
+    <div class="container">
+
+        <div class="header">
+            <h1>Header</h1>
+        </div><!-- Header -->
+        <div class="body">
+            <div class="content">
+                <h2>Content</h2>
+                <p>Bố cục của một trang web thường được sắp xếp theo cấu trúc rõ ràng và logic để giúp người dùng dễ dàng tiếp cận nội dung. Phần đầu trang (header) thường chứa tiêu đề, logo và thanh điều hướng (navigation bar), giúp người dùng di chuyển nhanh đến các phần khác. Phần thân trang (body) là nơi hiển thị nội dung chính, có thể được chia thành nhiều khối như phần giới thiệu, hình ảnh, văn bản, danh sách sản phẩm hoặc dịch vụ. Ngoài ra, hình ảnh minh họa được đặt gần nội dung liên quan để tăng tính trực quan. Cuối cùng là phần chân trang (footer), thường chứa thông tin liên hệ, bản quyền hoặc các liên kết bổ sung. Việc sắp xếp hợp lý các thành phần này không chỉ giúp trang web trở nên thẩm mỹ mà còn nâng cao trải nghiệm người dùng.</p>
+            </div>
+
+            <div class="slidebar">
+                <h2>Slide bar</h2>
+                <P> Vậy slide bar (thanh trượt) thường được dùng trong trang web để tạo hiệu ứng trượt qua lại các nội dung, ví dụ như ảnh, sản phẩm, hoặc tin tức. Slide bar giúp giao diện sống động, hiện đại và tiết kiệm không gian bằng cách cho phép hiển thị nhiều nội dung trong một khu vực nhỏ.</P>
+            </div>
+        </div><!-- Body -->
+        <div class="footer">
+            <h1>Footer</h1>
+        </div><!-- Footer -->
+
+    </div>
+
+
+    
+</body>
+</html>
