@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>MediaPipe Hands Demo</title>
+    <!-- Nhúng thư viện MediaPipe Hands và Camera -->
+   <!-- <script src="https://cdn.jsdelivr.net/npm/@mediapipe/hands/hands.min.js"></script>-->
+    <script src="https://cdn.jsdelivr.net/npm/@mediapipe/hands/hands.js" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@mediapipe/camera_utils/camera_utils.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@mediapipe/drawing_utils/drawing_utils.js"></script>
+
+  </head>
+  <body style="display: flex;justify-content: center;align-items: center;flex-direction: column;gap: 30px;">
+    <!-- Video input từ webcam -->
+    <video id="input_video" style="display:none"></video>
+    <!-- Canvas để vẽ tay -->
+    <canvas id="output_canvas" width="640" height="480" style="border-radius: 20px;"></canvas>
+    <audio src="src/thud-sound-effect-319090.mp3" id="thudSound" controls></audio>
+
+    <script>
+      // Lấy thẻ video và canvas từ HTML
+      const videoElement = document.getElementById('input_video');
+      const canvasElement = document.getElementById('output_canvas');
+      const canvasCtx = canvasElement.getContext('2d'); // Dùng để vẽ lên canvas
+      const thudSound = document.getElementById('thudSound');
+
+      // Tạo đối tượng xử lý tay
+      const hands = new Hands({
+        locateFile: (file) => `https://cdn.jsdelivr.net/npm/@mediapipe/hands/${file}`
+      });
+
+      // Cấu hình model:
+      hands.setOptions({
+        maxNumHands: 2, // Tối đa 2 bàn tay
+        modelComplexity: 1, // Mức độ chi tiết của model (0 hoặc 1)
+        minDetectionConfidence: 0.7, // Tự tin tối thiểu để phát hiện tay
+        minTrackingConfidence: 0.5   // Tự tin tối thiểu để theo dõi tay
+      });
+    
+
+      // Xử lý kết quả mỗi khung hình camera
+      hands.onResults(results => {
+        canvasCtx.save(); // Lưu trạng thái canvas
+        canvasCtx.clearRect(0, 0, canvasElement.width, canvasElement.height); // Xoá khung cũ
+
+        // Vẽ hình ảnh camera lên canvas
+        canvasCtx.drawImage(results.image, 0, 0, canvasElement.width, canvasElement.height);
+
+        // Nếu phát hiện tay thì vẽ các điểm
+        if (results.multiHandLandmarks) {
+          for (const landmarks of results.multiHandLandmarks) {
+            drawConnectors(canvasCtx, landmarks, HAND_CONNECTIONS, {color: '#00FF00'}); // Vẽ khung tay
+            drawLandmarks(canvasCtx, landmarks, {color: '#FF0000', radius: 2}); // Vẽ các điểm khớp
+            
+             if (isHandOpen(landmarks)) {
+                document.body.style.background = "red";
+                if (thudSound.paused) {
+                    thudSound.play(); // Phát âm thanh khi tay mở
+                }
+            } else {
+                document.body.style.background = "white";
+            }
+          }
+        }
+
+        canvasCtx.restore(); // Khôi phục canvas như ban đầu
+      });
+
+        // Tạo camera & gửi hình ảnh từng khung vào MediaPipe Hands
+      const camera = new Camera(videoElement, {
+        onFrame: async () => {
+          await hands.send({ image: videoElement }); // Gửi từng khung hình video vào hands model
+        },
+        width: 640,
+        height: 480
+      });
+
+      camera.start(); // Bắt đầu camera
+
+
+      function isHandOpen(landmarks) {
+        if (!landmarks) return false;
+
+        // Mốc điểm: index finger: 8, middle: 12, ring: 16, pinky: 20, thumb: 4
+        const tips = [8, 12, 16, 20];
+        let openFingers = 0;
+
+        // 4 ngón: so sánh theo trục Y
+        for (let i = 0; i < tips.length; i++) {
+            const tip = landmarks[tips[i]];
+            const pip = landmarks[tips[i] - 2];
+            if (tip.y < pip.y) openFingers++;
+        }
+
+        // Ngón cái: so sánh theo trục X
+        const thumbTip = landmarks[4];
+        const thumbBase = landmarks[2];
+        if (thumbTip.x > thumbBase.x) openFingers++;
+
+        return openFingers === 5;
+    }
+
+
+    </script>
+  </body>
+</html>
